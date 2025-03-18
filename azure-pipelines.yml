@@ -39,7 +39,7 @@ steps:
   enabled: 'true'
 
 - script: |
-    mlflow models generate-dockerfile -m "runs:/617904c9ff9248068953c1693202708a/model/" -d "mlflow_docker" --enable-mlserver
+    mlflow models generate-dockerfile -m "runs:/65c08c8d0e1047c8b6e4679293500297/model/" -d "mlflow_docker" --enable-mlserver
   displayName: 'Create Dockerfile'
   enabled: 'true'
 
