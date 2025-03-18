@@ -33,7 +33,7 @@ steps:
     export MLFLOW_TRACKING_URI=databricks
     export DATABRICKS_HOST=${{ parameters.databricks_host }}
     export DATABRICKS_TOKEN=${{ parameters.databricks_token }}
-    mlflow artifacts download -r "${{ parameters.run_id }}" -d "runs:/617904c9ff9248068953c1693202708a/model/"
+    mlflow artifacts download -r "${{ parameters.run_id }}" -d "C:\Users\dhill\OneDrive - STIHL Group\FailureDetection_via_Sound\Praesentationen"
     ls -la
   displayName: 'Configure MLFlow environmental variables'
   enabled: 'true'
