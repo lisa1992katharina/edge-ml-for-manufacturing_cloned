@@ -33,13 +33,13 @@ steps:
     export MLFLOW_TRACKING_URI=databricks
     export DATABRICKS_HOST=${{ parameters.databricks_host }}
     export DATABRICKS_TOKEN=${{ parameters.databricks_token }}
-    mlflow artifacts download -r "${{ parameters.run_id }}" -d "model_dir"
+    mlflow artifacts download -r "${{ parameters.run_id }}" -d "runs:/574a2c5936a34142869d011f5d311bd8/model/"
     ls -la
   displayName: 'Configure MLFlow environmental variables'
   enabled: 'true'
 
 - script: |
-    mlflow models generate-dockerfile -m "model_dir/model/" -d "mlflow_docker" --enable-mlserver
+    mlflow models generate-dockerfile -m "runs:/574a2c5936a34142869d011f5d311bd8/model/" -d "mlflow_docker" --enable-mlserver
   displayName: 'Create Dockerfile'
   enabled: 'true'
 
