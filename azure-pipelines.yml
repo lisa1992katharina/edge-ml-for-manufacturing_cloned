@@ -33,13 +33,13 @@ steps:
     export MLFLOW_TRACKING_URI=databricks
     export DATABRICKS_HOST=${{ parameters.databricks_host }}
     export DATABRICKS_TOKEN=${{ parameters.databricks_token }}
-    mlflow artifacts download -r "${{ parameters.run_id }}" -d "C:\Users\dhill\OneDrive - STIHL Group\FailureDetection_via_Sound\Praesentationen"
+    mlflow artifacts download -r "${{ parameters.run_id }}" -d "model_dir"
     ls -la
   displayName: 'Configure MLFlow environmental variables'
   enabled: 'true'
 
 - script: |
-    mlflow models generate-dockerfile -m "runs:/65c08c8d0e1047c8b6e4679293500297/model/" -d "mlflow_docker" --enable-mlserver
+    mlflow models generate-dockerfile -m "model_dir/model/" -d "mlflow_docker" --enable-mlserver
   displayName: 'Create Dockerfile'
   enabled: 'true'
 
