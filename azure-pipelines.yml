@@ -23,17 +23,7 @@ steps:
   
 - task: DockerInstaller@0
   inputs:
-    dockerVersion: '17.09.0-ce'
-
-- script: |
-    sudo apt-get install gcc python3-dev
-  displayName: 'Installing gcc for psutil'
-  enabled: 'true'
-  
-- script: |
-    pip install --upgrade pip setuptools
-  displayName: 'upgrade setuptools'
-  enabled: 'true'
+    dockerVersion: '17.09.0-ce' 
   
 - script: pip install mlflow
   displayName: 'Installing dependencies'
