@@ -55,6 +55,11 @@ steps:
 #  enabled: 'true'
 
 - script: |
+    sudo apt-get update
+    sudo apt-get install -y gcc python3-dev
+  displayName: 'Installiere gcc und python3-dev'
+
+- script: |
     docker build -t "errordetect.azurecr.io/ml-model:v.${{ parameters.model_version }}" mlflow_docker/
   displayName: 'Create Docker Image'
   enabled: 'true'
