@@ -1,4 +1,7 @@
-RUN apt-get update && apt-get install -y \
+FROM python:3.12.3
+RUN apt-get update -y && sudo apt-get install gcc \
+RUN python -m pip install --no-cache-dir --upgrade pip \
+&& python -m pip install -U setuptools \
 python3-dev \       
 build-essential \       
 liblz4-dev \       
