@@ -1,4 +1,4 @@
-FROM python:3.12.3
+FROM python:3.12.3-slim
 RUN apt-get update -y \
 sudo apt-get install gcc python3-dev
 RUN python -m pip install --no-cache-dir --upgrade pip \
