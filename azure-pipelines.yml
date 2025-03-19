@@ -25,6 +25,12 @@ steps:
   inputs:
     dockerVersion: '17.09.0-ce'
 
+- script: |
+    sudo apt-get install gcc python3-dev
+    pip install --upgrade pip setuptools
+  displayName: 'Installing gcc for psutil'
+  enabled: 'true'
+  
 - script: pip install mlflow
   displayName: 'Installing dependencies'
   enabled: 'true'
@@ -43,16 +49,16 @@ steps:
   displayName: 'Create Dockerfile'
   enabled: 'true'
 
-- script: |
-    with open(mlflow_docker / 'Dockerfile', 'r') as f:
-      lines = f.readlines() 
-      for ind, line in enumerate(lines):
-          if line.startswith('RUN apt-get -y update && apt-get install -y --no-install-recommends '):
-              lines[ind] = line.split('\n')[0] + ' -y gcc g++\n'
-      with open(mlflow_docker / 'Dockerfile', 'w') as f:
-          f.writelines(lines)
-  displayName: 'Manipulate Dockerfile'
-  enabled: 'true'
+#- script: |
+#    with open(mlflow_docker / 'Dockerfile', 'r') as f:
+#      lines = f.readlines() 
+#      for ind, line in enumerate(lines):
+#          if line.startswith('RUN apt-get -y update && apt-get install -y --no-install-recommends '):
+#              lines[ind] = line.split('\n')[0] + ' -y gcc g++\n'
+#      with open(mlflow_docker / 'Dockerfile', 'w') as f:
+#          f.writelines(lines)
+#  displayName: 'Manipulate Dockerfile'
+#  enabled: 'true'
 
 - script: |
     docker build -t "errordetect.azurecr.io/ml-model:v.${{ parameters.model_version }}" mlflow_docker/
